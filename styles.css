@@ -1427,8 +1427,9 @@
     .apply-cta .button:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 0 rgba(20, 11, 66, 0.18);
-      background: #fff;
-      color: #140B42;
+      background-color: #005587;
+      color: white;
+      transition : all 200ms ease;
     }
 
     .apply-cta p {
