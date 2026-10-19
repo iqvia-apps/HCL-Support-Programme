@@ -1308,9 +1308,16 @@
 
     .viewport-section {
       display: flex;
-      min-height: calc(100svh - 76px);
+      /* min-height: calc(100svh - 76px); */
       align-items: center;
       padding-block: clamp(3.5rem, 7vh, 5rem);
+    }    
+    .viewport-section-bottom-text {
+      display: flex;
+      /* min-height: calc(100svh - 76px); */
+      align-items: center;
+      padding-block: clamp(3.5rem, 7vh, 5rem);
+      padding-bottom: 0;
     }
 
     .section-title {
@@ -1332,6 +1339,15 @@
       color: #2B3A42;
       font-size: 1rem;
       line-height: 1.8;
+    }
+
+    .programme-ref {
+      text-align: right;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 1rem 0;
+      padding-top :2.5rem;
     }
 
     .button {
@@ -1585,6 +1601,9 @@
       .viewport-section {
         min-height: auto;
         padding-block: 4rem;
+      }
+      .viewport-section-bottom-text {
+        padding-bottom: 0;
       }
     }
 
