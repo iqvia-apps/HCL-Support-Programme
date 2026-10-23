@@ -22,19 +22,24 @@
                 class="size-4 rounded-full border-[5px] border-white"></span></span><span class="leading-tight"><strong
                 class="block text-[15px] tracking-[-0.02em]">HCL Support Programme</strong><span
                 class="text-xs text-[#2B3A42]">Expression of interest</span></span></a>
-          <nav class="hidden items-center gap-7 text-sm font-bold md:flex" aria-label="Primary navigation"><a
-              class="nav-link"
-              href="#programme">Program</a><a
-              class="nav-link"
-              href="#support">Support</a><a
-              class="nav-link"
-              href="#eligibility">Eligibility</a>
-          </nav><a class="button button-small"
+          <nav id="primary-nav" class="primary-nav items-center gap-7 text-sm font-bold" aria-label="Primary navigation">
+            <div class="primary-nav-inner page-wrap">
+              <a class="nav-link" href="#programme">Program</a>
+              <a class="nav-link" href="#support">Support</a>
+              <a class="nav-link" href="#eligibility">Eligibility</a>
+            </div>
+          </nav>
+          <div class="flex items-center gap-2">
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+              <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <a class="button button-small"
             href="#interest-cta">Express
             interest <svg aria-hidden="true" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14m-5-5 5 5-5 5"></path>
             </svg></a>
+          </div>
         </div>
       </header>
       <main id="top" class="pt-[76px]">
@@ -608,5 +613,51 @@
       </footer>
     </div>
   </div>
+  <script>
+    (function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var nav = document.getElementById("primary-nav");
+      var desktop = window.matchMedia("(min-width: 48rem)");
+      if (!toggle || !nav) return;
+
+      function setOpen(open) {
+        var show = open && !desktop.matches;
+        toggle.setAttribute("aria-expanded", show ? "true" : "false");
+        toggle.setAttribute("aria-label", show ? "Close menu" : "Open menu");
+        nav.classList.toggle("is-open", show);
+        if (desktop.matches || show) {
+          nav.removeAttribute("aria-hidden");
+          nav.removeAttribute("inert");
+        } else {
+          nav.setAttribute("aria-hidden", "true");
+          nav.setAttribute("inert", "");
+        }
+      }
+
+      toggle.addEventListener("click", function () {
+        setOpen(toggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      nav.addEventListener("click", function (event) {
+        if (event.target.closest("a")) setOpen(false);
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") setOpen(false);
+      });
+
+      document.addEventListener("click", function (event) {
+        if (toggle.getAttribute("aria-expanded") !== "true") return;
+        if (event.target.closest("header")) return;
+        setOpen(false);
+      });
+
+      desktop.addEventListener("change", function () {
+        setOpen(false);
+      });
+
+      setOpen(false);
+    })();
+  </script>
 </body>
 </html>

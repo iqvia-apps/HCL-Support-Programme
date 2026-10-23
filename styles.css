@@ -1469,6 +1469,116 @@
       color: #00BFB3;
     }
 
+    .nav-toggle {
+      display: grid;
+      width: 2.5rem;
+      height: 2.5rem;
+      place-items: center;
+      border: 0;
+      border-radius: 0.75rem;
+      background: transparent;
+      padding: 0;
+      color: #140B42;
+      cursor: pointer;
+    }
+
+    .nav-toggle:hover {
+      color: #00BFB3;
+    }
+
+    .nav-toggle-bars {
+      display: grid;
+      width: 1.15rem;
+      gap: 0.22rem;
+    }
+
+    .nav-toggle-bars span {
+      display: block;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+      transition: transform 180ms ease, opacity 160ms ease;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(1) {
+      transform: translateY(5.5px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(3) {
+      transform: translateY(-5.5px) rotate(-45deg);
+    }
+
+    /* Dropdown only below the same 48rem cutoff as .md\:flex. */
+    .primary-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      border-bottom: 1px solid transparent;
+      background: rgba(244, 244, 244, 0.95);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: grid-template-rows 180ms ease, visibility 0s linear 180ms, border-color 180ms ease;
+    }
+
+    .primary-nav.is-open {
+      grid-template-rows: 1fr;
+      border-bottom-color: rgba(20, 11, 66, 0.1);
+      visibility: visible;
+      pointer-events: auto;
+      transition: grid-template-rows 180ms ease, visibility 0s linear 0s, border-color 180ms ease;
+    }
+
+    .primary-nav-inner {
+      display: grid;
+      min-height: 0;
+      overflow: hidden;
+      gap: 0.15rem;
+      padding-block: 0.35rem 0.85rem;
+    }
+
+    .primary-nav-inner a {
+      padding-block: 0.75rem;
+    }
+
+    @media (width >= 48rem) {
+      .nav-toggle {
+        display: none;
+      }
+
+      .primary-nav {
+        position: static;
+        display: flex;
+        grid-template-rows: none;
+        overflow: visible;
+        border: 0;
+        background: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        visibility: visible;
+        pointer-events: auto;
+        transition: none;
+      }
+
+      .primary-nav-inner {
+        display: contents;
+      }
+
+      .primary-nav-inner a {
+        padding-block: 0;
+      }
+    }
+
     .hero-grid {
       background-image: linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
       background-size: 64px 64px;
